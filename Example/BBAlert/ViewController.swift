@@ -16,7 +16,8 @@ class ViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        BBAlert.share.show()
+        super.viewDidAppear(animated)
+        BBAlert.shared.show()
     }
 
     override func didReceiveMemoryWarning() {
