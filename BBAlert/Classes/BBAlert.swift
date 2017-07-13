@@ -15,6 +15,8 @@ public struct AlertSettings {
 }
 
 public struct BlurSettings {
+    var blurEffectStyle: UIBlurEffectStyle = .light
+    var isCustomBlur: Bool = false
     var radius: CGFloat = 10.0
     var tintColor: UIColor = UIColor(colorLiteralRed: 0.0, green: 0.0, blue: 0.0, alpha: 0.7)
     var saturationDeltaFactor: CGFloat = 1.0
@@ -30,6 +32,7 @@ open class BBAlert {
     
     public func show() {
         controller = BBAlertController(settings: settings)
+        controller.modalPresentationStyle = .overCurrentContext
         topMostController()?.present(controller, animated: false)
     }
     
@@ -74,10 +77,15 @@ public class BBAlertController: UIViewController {
     }
     
     private func makeBackground() {
-        blurBackground()
+        let blurSettings = settings.blurSettings
+        if blurSettings.isCustomBlur {
+            makeBlurBackground(blurSettings: blurSettings)
+        } else {
+            makeDefaultBlurBackground(blurSettings: blurSettings)
+        }
     }
     
-    private func blurBackground() {
+    private func makeBlurBackground(blurSettings: BlurSettings) {
         guard let viewController = presentingViewController else {
             return
         }
@@ -85,12 +93,22 @@ public class BBAlertController: UIViewController {
         viewController.view.drawHierarchy(in: viewController.view.bounds, afterScreenUpdates: true)
         let screenshot = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        let blurSettings = settings.blurSettings
         let bluredImage = screenshot?.applyBlur(withRadius: blurSettings.radius,
                                                 tintColor: blurSettings.tintColor,
                                                 saturationDeltaFactor: blurSettings.saturationDeltaFactor,
                                                 maskImage: nil)
-        view.layer.contents = bluredImage?.cgImage
+        let bluredImageView = UIImageView(image: bluredImage)
+        bluredImageView.frame = view.bounds
+        bluredImageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(bluredImageView)
+    }
+    
+    private func makeDefaultBlurBackground(blurSettings: BlurSettings) {
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(blurEffectView)
     }
     
 }
