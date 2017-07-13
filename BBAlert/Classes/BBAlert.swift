@@ -23,6 +23,7 @@ public struct BackgroundSettings {
 public struct BlurSettings {
     var blurEffectStyle: UIBlurEffectStyle = .dark
     var isCustomBlur: Bool = false
+    var enabled: Bool = true
     var radius: CGFloat = 10.0
     var tintColor: UIColor = UIColor(colorLiteralRed: 0.0, green: 0.0, blue: 0.0, alpha: 0.7)
     var saturationDeltaFactor: CGFloat = 1.0
@@ -88,7 +89,11 @@ public class BBAlertController: UIViewController {
     
     private func makeBackground() {
         view.backgroundColor = settings.background.color
+        
         let blurSettings = settings.background.blur
+        guard blurSettings.enabled else {
+            return
+        }
         if blurSettings.isCustomBlur {
             makeBlurBackground(blurSettings: blurSettings)
         } else {
