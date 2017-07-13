@@ -21,7 +21,7 @@ public struct BackgroundSettings {
 }
 
 public struct BlurSettings {
-    var blurEffectStyle: UIBlurEffectStyle = .light
+    var blurEffectStyle: UIBlurEffectStyle = .dark
     var isCustomBlur: Bool = false
     var radius: CGFloat = 10.0
     var tintColor: UIColor = UIColor(colorLiteralRed: 0.0, green: 0.0, blue: 0.0, alpha: 0.7)
@@ -115,7 +115,7 @@ public class BBAlertController: UIViewController {
     }
     
     private func makeDefaultBlurBackground(blurSettings: BlurSettings) {
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
+        let blurEffect = UIBlurEffect(style: blurSettings.blurEffectStyle)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = view.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
