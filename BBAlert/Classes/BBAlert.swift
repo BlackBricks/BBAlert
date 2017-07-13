@@ -11,7 +11,13 @@ import UIImageEffects
 import UIKit
 
 public struct AlertSettings {
-    var blurSettings: BlurSettings = BlurSettings()
+    var background: BackgroundSettings = BackgroundSettings()
+    var view: ViewSettings = ViewSettings()
+}
+
+public struct BackgroundSettings {
+    var color: UIColor = UIColor(colorLiteralRed: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
+    var blur: BlurSettings = BlurSettings()
 }
 
 public struct BlurSettings {
@@ -20,6 +26,10 @@ public struct BlurSettings {
     var radius: CGFloat = 10.0
     var tintColor: UIColor = UIColor(colorLiteralRed: 0.0, green: 0.0, blue: 0.0, alpha: 0.7)
     var saturationDeltaFactor: CGFloat = 1.0
+}
+
+public struct ViewSettings {
+    
 }
 
 open class BBAlert {
@@ -77,7 +87,8 @@ public class BBAlertController: UIViewController {
     }
     
     private func makeBackground() {
-        let blurSettings = settings.blurSettings
+        view.backgroundColor = settings.background.color
+        let blurSettings = settings.background.blur
         if blurSettings.isCustomBlur {
             makeBlurBackground(blurSettings: blurSettings)
         } else {
