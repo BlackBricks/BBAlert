@@ -10,17 +10,31 @@ import Foundation
 import UIImageEffects
 import UIKit
 
+public struct AlertSettings {
+    var blurSettings: BlurSettings = BlurSettings()
+}
+
+public struct BlurSettings {
+    var radius: CGFloat = 10.0
+    var tintColor: UIColor = UIColor(colorLiteralRed: 0.0, green: 0.0, blue: 0.0, alpha: 0.7)
+    var saturationDeltaFactor: CGFloat = 1.0
+}
+
 open class BBAlert {
     
-    public static let shared = BBAlert()
+    public static let shared: BBAlert = BBAlert()
     
-    public var blurSettings: BlurSettings = BlurSettings()
+    public var settings: AlertSettings = AlertSettings()
     
-    public var controller = BBAlertController()
+    private var controller: BBAlertController = BBAlertController()
     
     public func show() {
-        controller = BBAlertController()
+        controller = BBAlertController(settings: settings)
         topMostController()?.present(controller, animated: false)
+    }
+    
+    public func hide() {
+        controller.dismiss(animated: false)
     }
     
     private func topMostController() -> UIViewController? {
@@ -34,21 +48,13 @@ open class BBAlert {
     }
 }
 
-public struct BlurSettings {
-    
-    var radius: CGFloat = 10.0
-    var tintColor: UIColor = UIColor(colorLiteralRed: 0.0, green: 0.0, blue: 0.0, alpha: 0.7)
-    var saturationDeltaFactor: CGFloat = 1.0
-    
-}
-
 public class BBAlertController: UIViewController {
     
-    var alert: BBAlert = BBAlert.shared
+    var settings: AlertSettings = AlertSettings()
     
-    convenience init(alert: BBAlert = BBAlert.shared) {
+    convenience init(settings: AlertSettings = AlertSettings()) {
         self.init(nibName: nil, bundle: nil)
-        self.alert = alert
+        self.settings = settings
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -61,6 +67,13 @@ public class BBAlertController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    public override func viewWillAppear(_ animated: Bool) {
+        makeBackground()
+    }
+    
+    private func makeBackground() {
         blurBackground()
     }
     
@@ -72,9 +85,10 @@ public class BBAlertController: UIViewController {
         viewController.view.drawHierarchy(in: viewController.view.bounds, afterScreenUpdates: true)
         let screenshot = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        let bluredImage = screenshot?.applyBlur(withRadius: alert.blurSettings.radius,
-                                                tintColor: alert.blurSettings.tintColor,
-                                                saturationDeltaFactor: alert.blurSettings.saturationDeltaFactor,
+        let blurSettings = settings.blurSettings
+        let bluredImage = screenshot?.applyBlur(withRadius: blurSettings.radius,
+                                                tintColor: blurSettings.tintColor,
+                                                saturationDeltaFactor: blurSettings.saturationDeltaFactor,
                                                 maskImage: nil)
         view.layer.contents = bluredImage?.cgImage
     }

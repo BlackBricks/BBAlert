@@ -15,8 +15,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    @IBAction func showAlert() {
         BBAlert.shared.show()
     }
 
