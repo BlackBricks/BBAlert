@@ -10,7 +10,7 @@ import Foundation
 import UIImageEffects
 import UIKit
 
-public struct AlertSettings {
+public struct Settings {
     var background: BackgroundSettings = BackgroundSettings()
     var view: ViewSettings = ViewSettings()
 }
@@ -33,11 +33,20 @@ public struct ViewSettings {
     
 }
 
+public struct Animation {
+    var appearance: Animator = Animator()
+    var disappearance : Animator = Animator()
+}
+
+public struct Animator {
+    var block: (Float) -> Void = {_ in }
+}
+
 open class BBAlert {
     
     public static let shared: BBAlert = BBAlert()
     
-    public var settings: AlertSettings = AlertSettings()
+    public var settings: Settings = Settings()
     
     private var controller: BBAlertController = BBAlertController()
     
@@ -64,12 +73,14 @@ open class BBAlert {
 
 public class BBAlertController: UIViewController {
     
-    private var settings: AlertSettings = AlertSettings()
+    private var settings: Settings = Settings()
+    private var animation: Animation = Animation()
     private var backgroundView: UIView = UIView()
     
-    convenience init(settings: AlertSettings = AlertSettings()) {
+    convenience init(settings: Settings = Settings(), animation: Animation = Animation()) {
         self.init(nibName: nil, bundle: nil)
         self.settings = settings
+        self.animation = animation
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
