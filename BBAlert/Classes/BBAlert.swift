@@ -64,7 +64,8 @@ open class BBAlert {
 
 public class BBAlertController: UIViewController {
     
-    var settings: AlertSettings = AlertSettings()
+    private var settings: AlertSettings = AlertSettings()
+    private var backgroundView: UIView = UIView()
     
     convenience init(settings: AlertSettings = AlertSettings()) {
         self.init(nibName: nil, bundle: nil)
@@ -81,6 +82,7 @@ public class BBAlertController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor.clear
     }
     
     public override func viewWillAppear(_ animated: Bool) {
@@ -88,8 +90,11 @@ public class BBAlertController: UIViewController {
     }
     
     private func makeBackground() {
-        view.backgroundColor = settings.background.color
-        
+        backgroundView.backgroundColor = settings.background.color
+        backgroundView.frame = view.bounds
+        backgroundView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(backgroundView)
+
         let blurSettings = settings.background.blur
         guard blurSettings.enabled else {
             return
@@ -116,7 +121,7 @@ public class BBAlertController: UIViewController {
         let bluredImageView = UIImageView(image: bluredImage)
         bluredImageView.frame = view.bounds
         bluredImageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        view.addSubview(bluredImageView)
+        backgroundView.addSubview(bluredImageView)
     }
     
     private func makeDefaultBlurBackground(blurSettings: BlurSettings) {
@@ -124,7 +129,7 @@ public class BBAlertController: UIViewController {
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = view.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        view.addSubview(blurEffectView)
+        backgroundView.addSubview(blurEffectView)
     }
     
 }
