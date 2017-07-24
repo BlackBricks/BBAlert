@@ -6,9 +6,9 @@
 //
 //
 
-import UIKit
 import Foundation
 import UIImageEffects
+import UIKit
 
 public struct Settings {
     var background: BackgroundSettings = BackgroundSettings()
@@ -36,11 +36,11 @@ public struct ViewSettings {
 
 public struct Animation {
     var appearance: Animator = Animator()
-    var disappearance : Animator = Animator()
+    var disappearance: Animator = Animator()
 }
 
 public struct Animator {
-    var block: (Float) -> Void = {_ in }
+
 }
 
 open class BBAlert {
@@ -98,6 +98,7 @@ public class BBAlertController: UIViewController {
     }
     
     public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         makeBackground()
     }
     
@@ -157,6 +158,5 @@ public class BBAlertController: UIViewController {
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         return blurEffectView
     }
-    
     
 }

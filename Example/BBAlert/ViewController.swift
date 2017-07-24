@@ -6,10 +6,10 @@
 //  Copyright (c) 2017 kryndach. All rights reserved.
 //
 
-import UIKit
 import BBAlert
+import UIKit
 
-class ViewController: UIViewController {
+private class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,4 +25,3 @@ class ViewController: UIViewController {
     }
 
 }
-
