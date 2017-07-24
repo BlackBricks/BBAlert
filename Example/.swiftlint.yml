@@ -94,6 +94,7 @@ excluded: # paths to ignore during linting. overridden by `included`.
   - Pods
 included:
   - ../BBAlert
+  - ../Example
 # parameterized rules can be customized from this configuration file
 file_length:
   - 700
