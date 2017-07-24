@@ -13,6 +13,7 @@ import UIKit
 public struct Settings {
     var background: BackgroundSettings = BackgroundSettings()
     var view: ViewSettings = ViewSettings()
+    var animation: Animation = Animation()
 }
 
 public struct BackgroundSettings {
@@ -101,26 +102,40 @@ public class BBAlertController: UIViewController {
     }
     
     private func makeBackground() {
+        guard let viewController = presentingViewController else {
+            return
+        }
+        
+        updateBackgroundView(backgroundView, backgroundViewController: viewController, settings: settings)
+        if backgroundView.superview == nil {
+            view.addSubview(backgroundView)
+        }
+    }
+    
+    private func updateBackgroundView(_ backgroundView: UIView, backgroundViewController: UIViewController, settings: Settings) {
         backgroundView.backgroundColor = settings.background.color
         backgroundView.frame = view.bounds
         backgroundView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        view.addSubview(backgroundView)
 
+        for subview in backgroundView.subviews {
+            subview.removeFromSuperview()
+        }
+        
         let blurSettings = settings.background.blur
         guard blurSettings.enabled else {
             return
         }
+        
         if blurSettings.isCustomBlur {
-            makeBlurBackground(blurSettings: blurSettings)
+            let bluredView = makeBluredView(viewController: backgroundViewController, blurSettings: blurSettings)
+            backgroundView.addSubview(bluredView)
         } else {
-            makeDefaultBlurBackground(blurSettings: blurSettings)
+            let bluredView = makeDefaultBluredView(viewController: backgroundViewController, blurSettings: blurSettings)
+            backgroundView.addSubview(bluredView)
         }
     }
     
-    private func makeBlurBackground(blurSettings: BlurSettings) {
-        guard let viewController = presentingViewController else {
-            return
-        }
+    private func makeBluredView(viewController: UIViewController, blurSettings: BlurSettings) -> UIView {
         UIGraphicsBeginImageContextWithOptions(viewController.view.bounds.size, true, 1)
         viewController.view.drawHierarchy(in: viewController.view.bounds, afterScreenUpdates: true)
         let screenshot = UIGraphicsGetImageFromCurrentImageContext()
@@ -130,17 +145,18 @@ public class BBAlertController: UIViewController {
                                                 saturationDeltaFactor: blurSettings.saturationDeltaFactor,
                                                 maskImage: nil)
         let bluredImageView = UIImageView(image: bluredImage)
-        bluredImageView.frame = view.bounds
+        bluredImageView.frame = viewController.view.bounds
         bluredImageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        backgroundView.addSubview(bluredImageView)
+        return bluredImageView
     }
     
-    private func makeDefaultBlurBackground(blurSettings: BlurSettings) {
+    private func makeDefaultBluredView(viewController: UIViewController, blurSettings: BlurSettings) -> UIView {
         let blurEffect = UIBlurEffect(style: blurSettings.blurEffectStyle)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = view.bounds
+        blurEffectView.frame = viewController.view.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        backgroundView.addSubview(blurEffectView)
+        return blurEffectView
     }
+    
     
 }
