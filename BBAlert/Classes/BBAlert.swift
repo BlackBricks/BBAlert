@@ -12,7 +12,6 @@ import UIKit
 
 public struct Settings {
     var background: BackgroundSettings = BackgroundSettings()
-    var view: ViewSettings = ViewSettings()
     var animation: Animation = Animation()
 }
 
@@ -30,10 +29,6 @@ public struct BlurSettings {
     var saturationDeltaFactor: CGFloat = 1.0
 }
 
-public struct ViewSettings {
-    
-}
-
 public struct Animation {
     var appearance: Animator = Animator()
     var disappearance: Animator = Animator()
@@ -41,6 +36,10 @@ public struct Animation {
 
 public struct Animator {
 
+}
+
+public protocol AlertDesignable {
+    var container: UIView { get set }
 }
 
 open class BBAlert {
@@ -77,6 +76,7 @@ public class BBAlertController: UIViewController {
     private var settings: Settings = Settings()
     private var animation: Animation = Animation()
     private var backgroundView: UIView = UIView()
+    private var containerView: UIView = UIView()
     
     convenience init(settings: Settings = Settings(), animation: Animation = Animation()) {
         self.init(nibName: nil, bundle: nil)
@@ -100,6 +100,7 @@ public class BBAlertController: UIViewController {
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         makeBackground()
+        makeContainer()
     }
     
     private func makeBackground() {
@@ -157,6 +158,10 @@ public class BBAlertController: UIViewController {
         blurEffectView.frame = viewController.view.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         return blurEffectView
+    }
+    
+    private func makeContainer() {
+        
     }
     
 }
