@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Reusable
 import UIImageEffects
 import UIKit
 
@@ -51,7 +52,8 @@ open class BBAlert {
     private var controller: BBAlertController = BBAlertController()
     
     public func show() {
-        controller = BBAlertController(settings: settings)
+        controller = BBAlertController()
+        controller.settings = settings
         controller.modalPresentationStyle = .overCurrentContext
         topMostController()?.present(controller, animated: false)
     }
@@ -73,34 +75,23 @@ open class BBAlert {
 
 public class BBAlertController: UIViewController {
     
-    private var settings: Settings = Settings()
-    private var animation: Animation = Animation()
+    public var settings: Settings = Settings()
+    public var animation: Animation = Animation()
+    
     private var backgroundView: UIView = UIView()
     private var containerView: UIView = UIView()
     
-    convenience init(settings: Settings = Settings(), animation: Animation = Animation()) {
-        self.init(nibName: nil, bundle: nil)
-        self.settings = settings
-        self.animation = animation
-    }
-    
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-    
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
+    private var containerController: UIViewController = UIViewController()
     
     public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.clear
+        makeContainer()
     }
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         makeBackground()
-        loadContainer()
     }
     
     private func makeBackground() {
@@ -110,7 +101,7 @@ public class BBAlertController: UIViewController {
         
         updateBackgroundView(backgroundView, backgroundViewController: viewController, settings: settings)
         if backgroundView.superview == nil {
-            view.addSubview(backgroundView)
+            view.insertSubview(backgroundView, at: 0)
         }
     }
     
@@ -160,8 +151,15 @@ public class BBAlertController: UIViewController {
         return blurEffectView
     }
     
-    private func loadContainer() {
+    private func makeContainer() {
+        containerController = SimpleAlertContainer.instantiate()
+        containerView = containerController.view
         
+        if let containerController = containerController as? AlertDesignable {
+            containerController.content
+        }
+
+        view.addSubview(containerView)
     }
     
 }

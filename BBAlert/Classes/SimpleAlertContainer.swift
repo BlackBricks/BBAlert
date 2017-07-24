@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import Reusable
 
-open class SimpleAlertContainer: UIViewController {
+open class SimpleAlertContainer: UIViewController, StoryboardBased {
     
     @IBOutlet fileprivate weak var contentView: UIView!
     
