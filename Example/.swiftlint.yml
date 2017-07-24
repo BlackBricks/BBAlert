@@ -91,10 +91,9 @@ opt_in_rules: # some rules are only opt-in
   - void_return
   - weak_delegate
 excluded: # paths to ignore during linting. overridden by `included`.
-  - Carthage
   - Pods
-  - fastlane
-  - XLProjectName/Helpers/R-Swift/R.generated.swift
+included:
+  - ../BBAlert
 # parameterized rules can be customized from this configuration file
 file_length:
   - 700

@@ -6,9 +6,9 @@
 //
 //
 
+import UIKit
 import Foundation
 import UIImageEffects
-import UIKit
 
 public struct Settings {
     var background: BackgroundSettings = BackgroundSettings()
