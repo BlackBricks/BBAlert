@@ -1,7 +1,13 @@
+source 'https://github.com/CocoaPods/Specs'
+
+platform :ios, '8.0'
 use_frameworks!
+inhibit_all_warnings!
 
 target 'BBAlert_Example' do
   pod 'BBAlert', :path => '../'
+  
+  pod 'SwiftLint'
 
   target 'BBAlert_Tests' do
     inherit! :search_paths
@@ -10,5 +16,6 @@ target 'BBAlert_Example' do
   pod 'Nimble', '~> 5.1.1'
   pod 'FBSnapshotTestCase'
   pod 'Nimble-Snapshots'
+  
   end
 end
