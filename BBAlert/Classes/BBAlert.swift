@@ -38,8 +38,8 @@ public struct Animator {
 
 }
 
-public protocol AlertDesignable {
-    var container: UIView { get set }
+public protocol AlertDesignable: AnyObject {
+    var content: UIView { get }
 }
 
 open class BBAlert {
@@ -100,7 +100,7 @@ public class BBAlertController: UIViewController {
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         makeBackground()
-        makeContainer()
+        loadContainer()
     }
     
     private func makeBackground() {
@@ -160,7 +160,7 @@ public class BBAlertController: UIViewController {
         return blurEffectView
     }
     
-    private func makeContainer() {
+    private func loadContainer() {
         
     }
     
