@@ -30,7 +30,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  BBAlert: 5b4626dfca465a9f4c1cd751d95373a623d16bbb
+  BBAlert: 0662405a6632b19aabb0d3738a075b9a23e5b220
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
   Nimble: 415e3aa3267e7bc2c96b05fa814ddea7bb686a29
   Nimble-Snapshots: e743439f26c2fa99d8f7e0d7c01c99bcb40aa6f2

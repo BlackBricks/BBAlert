@@ -32,9 +32,9 @@ TODO: Add long description of the pod here.
 
   s.source_files = 'BBAlert/Classes/**/*'
   
-  # s.resource_bundles = {
-  #   'BBAlert' => ['BBAlert/Assets/*.png']
-  # }
+  s.resource_bundles = {
+    'BBAlert' => ['BBAlert/Assets/**/*']
+  }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'UIKit'
