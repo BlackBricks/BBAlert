@@ -46,9 +46,10 @@ open class BBAlert {
     
     private var controller: BBAlertController = BBAlertController()
     
-    public func show() {
+    public func show(controller contentController: UIViewController) {
         controller = BBAlertController()
         controller.settings = settings
+        controller.contentController = contentController
         controller.modalPresentationStyle = .overCurrentContext
         topMostController()?.present(controller, animated: false)
     }
@@ -71,16 +72,15 @@ open class BBAlert {
 public class BBAlertController: UIViewController {
     
     public var settings: Settings = Settings()
-    
+    public var contentController: UIViewController = UIViewController()
+
     private var backgroundView: UIView = UIView()
     private var containerView: UIView = UIView()
-    
-    private var containerController: UIViewController = UIViewController()
     
     public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.clear
-        makeContainer()
+        makeContentContainer()
     }
     
     public override func viewWillAppear(_ animated: Bool) {
@@ -94,9 +94,7 @@ public class BBAlertController: UIViewController {
         }
         
         updateBackgroundView(backgroundView, backgroundViewController: viewController, settings: settings)
-        if backgroundView.superview == nil {
-            view.insertSubview(backgroundView, at: 0)
-        }
+        view.insertSubview(backgroundView, at: 0)
     }
     
     private func updateBackgroundView(_ backgroundView: UIView, backgroundViewController: UIViewController, settings: Settings) {
@@ -145,10 +143,21 @@ public class BBAlertController: UIViewController {
         return blurEffectView
     }
     
-    private func makeContainer() {
+    private func makeContentContainer() {
+        containerView = contentController.view
         
-
+        containerView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(containerView)
+        
+        let horizontalConstraint = NSLayoutConstraint(item: containerView, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0)
+        let verticalConstraint = NSLayoutConstraint(item: containerView, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 1, constant: 0)
+        
+        let topConstraint = NSLayoutConstraint(item: containerView, attribute: .top, relatedBy: .greaterThanOrEqual, toItem: view, attribute: .top, multiplier: 1, constant: 10)
+        let leftConstraint = NSLayoutConstraint(item: containerView, attribute: .left, relatedBy: .greaterThanOrEqual, toItem: view, attribute: .left, multiplier: 1, constant: 10)
+        let bottomConstraint = NSLayoutConstraint(item: containerView, attribute: .bottom, relatedBy: .greaterThanOrEqual, toItem: view, attribute: .bottom, multiplier: 1, constant: 10)
+        let rightConstraint = NSLayoutConstraint(item: containerView, attribute: .right, relatedBy: .greaterThanOrEqual, toItem: view, attribute: .right, multiplier: 1, constant: 10)
+        
+        view.addConstraints([horizontalConstraint, verticalConstraint, topConstraint, leftConstraint, bottomConstraint, rightConstraint])
     }
     
 }

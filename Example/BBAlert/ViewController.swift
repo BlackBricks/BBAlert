@@ -16,7 +16,7 @@ private class ViewController: UIViewController {
     }
     
     @IBAction func showAlert() {
-        BBAlert.shared.show()
+        BBAlert.shared.show(controller: UIViewController())
     }
 
     override func didReceiveMemoryWarning() {
