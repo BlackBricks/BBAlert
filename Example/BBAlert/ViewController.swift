@@ -7,19 +7,21 @@
 //
 
 import BBAlert
+import Reusable
 import UIKit
 
-private class ViewController: UIViewController {
+public class ViewController: UIViewController, StoryboardBased {
 
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
     }
     
     @IBAction func showAlert() {
-        BBAlert.shared.show(controller: UIViewController())
+        let vc = AlertExample.instantiate()
+        BBAlert.shared.show(controller: vc)
     }
 
-    override func didReceiveMemoryWarning() {
+    override public func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }

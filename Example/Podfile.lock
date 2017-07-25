@@ -14,6 +14,11 @@ PODS:
     - Nimble
     - Quick
   - Quick (1.0.0)
+  - Reusable (4.0.0):
+    - Reusable/Storyboard (= 4.0.0)
+    - Reusable/View (= 4.0.0)
+  - Reusable/Storyboard (4.0.0)
+  - Reusable/View (4.0.0)
   - SwiftLint (0.20.1)
   - UIImageEffects (0.0.1)
 
@@ -23,6 +28,7 @@ DEPENDENCIES:
   - Nimble (~> 5.1.1)
   - Nimble-Snapshots
   - Quick (~> 1.0.0)
+  - Reusable
   - SwiftLint
 
 EXTERNAL SOURCES:
@@ -35,9 +41,10 @@ SPEC CHECKSUMS:
   Nimble: 415e3aa3267e7bc2c96b05fa814ddea7bb686a29
   Nimble-Snapshots: e743439f26c2fa99d8f7e0d7c01c99bcb40aa6f2
   Quick: 8024e4a47e6cc03a9d5245ef0948264fc6d27cff
+  Reusable: 98e5fff1e0e2e00872199699b276dde08ee56c07
   SwiftLint: f60095dc173a3f3ec505bb34f5229c3dfd779a54
   UIImageEffects: 37b99fa461e4965f332ca82e92f2c22a1075ee84
 
-PODFILE CHECKSUM: 7c538bf4ad8c8ff9856fdb3c58787f973ea5fed9
+PODFILE CHECKSUM: 3f30591f215042b079d13570722d0c54ab297027
 
 COCOAPODS: 1.2.1
