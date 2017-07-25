@@ -80,12 +80,12 @@ public class BBAlertController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.clear
-        makeContentContainer()
     }
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         makeBackground()
+        makeContentContainer()
     }
     
     private func makeBackground() {
@@ -157,7 +157,12 @@ public class BBAlertController: UIViewController {
         let bottomConstraint = NSLayoutConstraint(item: containerView, attribute: .bottom, relatedBy: .greaterThanOrEqual, toItem: view, attribute: .bottom, multiplier: 1, constant: 10)
         let rightConstraint = NSLayoutConstraint(item: containerView, attribute: .right, relatedBy: .greaterThanOrEqual, toItem: view, attribute: .right, multiplier: 1, constant: 10)
         
-        view.addConstraints([horizontalConstraint, verticalConstraint, topConstraint, leftConstraint, bottomConstraint, rightConstraint])
+        NSLayoutConstraint.deactivate([horizontalConstraint, verticalConstraint, topConstraint, leftConstraint, bottomConstraint, rightConstraint])
+        
+        UIView.animate(withDuration: 2.0) { [weak self] in
+            NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint, topConstraint, leftConstraint, bottomConstraint, rightConstraint])
+            self?.containerView.layoutIfNeeded()
+        }
     }
     
 }
