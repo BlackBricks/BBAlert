@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Reusable
 import UIImageEffects
 import UIKit
 
@@ -37,10 +36,6 @@ public struct Animation {
 
 public struct Animator {
 
-}
-
-public protocol AlertDesignable: AnyObject {
-    var content: UIView { get }
 }
 
 open class BBAlert {
@@ -76,7 +71,6 @@ open class BBAlert {
 public class BBAlertController: UIViewController {
     
     public var settings: Settings = Settings()
-    public var animation: Animation = Animation()
     
     private var backgroundView: UIView = UIView()
     private var containerView: UIView = UIView()
@@ -152,12 +146,7 @@ public class BBAlertController: UIViewController {
     }
     
     private func makeContainer() {
-        containerController = SimpleAlertContainer.instantiate()
-        containerView = containerController.view
         
-        if let containerController = containerController as? AlertDesignable {
-            containerController.content
-        }
 
         view.addSubview(containerView)
     }
