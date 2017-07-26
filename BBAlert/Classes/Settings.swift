@@ -8,12 +8,12 @@
 
 import Foundation
 
-typealias ViewRelation = ((mainView: UIView, subView: UIView)) -> Void
+typealias ViewRelation = (mainView: UIView, subView: UIView)
 
 public struct Settings {
     var background: BackgroundSettings = BackgroundSettings()
     var animation: Animation = Animation()
-    var positioning: ViewRelation = defaultPositioning
+    var positioning: (ViewRelation) -> Void = defaultPositioning
 }
 
 public struct BackgroundSettings {
@@ -55,7 +55,7 @@ public struct Animator {
 
 private let padding: UIEdgeInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
 
-private let defaultPositioning: ViewRelation = { (mainView, subView) in
+private let defaultPositioning: (ViewRelation) -> Void = { (mainView, subView) in
     let horizontalConstraint = NSLayoutConstraint(item: subView, attribute: .centerX, relatedBy: .equal, toItem: mainView, attribute: .centerX, multiplier: 1, constant: 0)
     let verticalConstraint = NSLayoutConstraint(item: subView, attribute: .centerY, relatedBy: .equal, toItem: mainView, attribute: .centerY, multiplier: 1, constant: 0)
     
