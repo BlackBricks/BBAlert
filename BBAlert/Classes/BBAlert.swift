@@ -10,34 +10,6 @@ import Foundation
 import UIImageEffects
 import UIKit
 
-public struct Settings {
-    var background: BackgroundSettings = BackgroundSettings()
-    var animation: Animation = Animation()
-}
-
-public struct BackgroundSettings {
-    var color: UIColor = UIColor(colorLiteralRed: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
-    var blur: BlurSettings = BlurSettings()
-}
-
-public struct BlurSettings {
-    var blurEffectStyle: UIBlurEffectStyle = .dark
-    var isCustomBlur: Bool = false
-    var enabled: Bool = true
-    var radius: CGFloat = 10.0
-    var tintColor: UIColor = UIColor(colorLiteralRed: 0.0, green: 0.0, blue: 0.0, alpha: 0.7)
-    var saturationDeltaFactor: CGFloat = 1.0
-}
-
-public struct Animation {
-    var appearance: Animator = Animator()
-    var disappearance: Animator = Animator()
-}
-
-public struct Animator {
-
-}
-
 open class BBAlert {
     
     public static let shared: BBAlert = BBAlert()
@@ -149,20 +121,7 @@ public class BBAlertController: UIViewController {
         containerView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(containerView)
         
-        let horizontalConstraint = NSLayoutConstraint(item: containerView, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0)
-        let verticalConstraint = NSLayoutConstraint(item: containerView, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 1, constant: 0)
-        
-        let topConstraint = NSLayoutConstraint(item: containerView, attribute: .top, relatedBy: .greaterThanOrEqual, toItem: view, attribute: .top, multiplier: 1, constant: 10)
-        let leftConstraint = NSLayoutConstraint(item: containerView, attribute: .left, relatedBy: .greaterThanOrEqual, toItem: view, attribute: .left, multiplier: 1, constant: 10)
-        let bottomConstraint = NSLayoutConstraint(item: containerView, attribute: .bottom, relatedBy: .greaterThanOrEqual, toItem: view, attribute: .bottom, multiplier: 1, constant: 10)
-        let rightConstraint = NSLayoutConstraint(item: containerView, attribute: .right, relatedBy: .greaterThanOrEqual, toItem: view, attribute: .right, multiplier: 1, constant: 10)
-        
-        NSLayoutConstraint.deactivate([horizontalConstraint, verticalConstraint, topConstraint, leftConstraint, bottomConstraint, rightConstraint])
-        
-        UIView.animate(withDuration: 2.0) { [weak self] in
-            NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint, topConstraint, leftConstraint, bottomConstraint, rightConstraint])
-            self?.containerView.layoutIfNeeded()
-        }
+        settings.positioning((mainView: view, subView: containerView))
     }
     
 }
