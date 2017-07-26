@@ -31,16 +31,26 @@ public struct BlurSettings {
 }
 
 public struct Animation {
-    var backgroundAnimator: Animator = Animator()
-    var alertAnimator: Animator = Animator()
+    var backgroundAppearenceAnimator: Animator = Animator()
+    var backgroundDisappearenceAnimator: Animator = Animator()
+    var alertAppearenceAnimator: Animator = Animator()
+    var alertDisappearenceAnimator: Animator = Animator()
 }
 
 public struct Animator {
+    var preanimations: () -> Void = {}
     var animations: () -> Void = {}
-    var completion: (Bool) -> Void = { _ in }
+    var completion: () -> Void = {}
     var duration: TimeInterval = 0.0
     var animationOptions: UIViewAnimationOptions = []
     var delay: TimeInterval = 0.0
+    
+    public func run() {
+        preanimations()
+        UIView.animate(withDuration: duration, delay: delay, options: animationOptions, animations: animations, completion: { _ in
+            self.completion()
+        })
+    }
 }
 
 private let padding: UIEdgeInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)

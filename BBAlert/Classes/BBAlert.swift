@@ -58,6 +58,8 @@ public class BBAlertController: UIViewController {
         super.viewWillAppear(animated)
         makeBackground()
         makeContentContainer()
+        settings.animation.backgroundAppearenceAnimator.run()
+        settings.animation.alertAppearenceAnimator.run()
     }
     
     private func makeBackground() {
@@ -121,7 +123,7 @@ public class BBAlertController: UIViewController {
         containerView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(containerView)
         
-        settings.positioning((mainView: view, subView: containerView))
+        settings.positioning((mainView: view, subView: containerView))        
     }
     
 }
