@@ -51,16 +51,20 @@ public struct Animator {
     var animationOptions: UIViewAnimationOptions = []
     var delay: TimeInterval = 0.0
 
-    public func runAnimationFor(mainView: UIView, subView: UIView) {
+    public func runAnimationFor(mainView: UIView, subView: UIView, completion: @escaping () -> Void = {
+    }) {
         let views: ViewRelation = (mainView: mainView, subView: subView)
         preanimations(views)
-        UIView.animate(withDuration: duration, delay: delay, options: animationOptions,
+        UIView.animate(
+                withDuration: duration,
+                delay: delay,
+                options: animationOptions,
                 animations: {
                     self.animations(views)
                 },
-                completion: {
-                    _ in
+                completion: { _ in
                     self.completion(views)
+                    completion()
                 })
     }
 }
@@ -82,10 +86,38 @@ private let defaultPositioning: (ViewRelation) -> Void = {
 
 private let defaultAppearenceAnimator: Animator = {
     var animator = Animator()
+    animator.duration = 0.4
+    animator.animationOptions = [.curveEaseInOut]
+    animator.preanimations = {
+        (mainView, subView) in
+        subView.alpha = 0.0
+    }
+    animator.animations = {
+        (mainView, subView) in
+        subView.alpha = 1.0
+    }
+    animator.completion = {
+        (mainView, subView) in
+
+    }
     return animator
 }()
 
 private let defaultDisappearenceAnimator: Animator = {
     var animator = Animator()
+    animator.duration = 0.4
+    animator.animationOptions = [.curveEaseInOut]
+    animator.preanimations = {
+        (mainView, subView) in
+        subView.alpha = 1.0
+    }
+    animator.animations = {
+        (mainView, subView) in
+        subView.alpha = 0.0
+    }
+    animator.completion = {
+        (mainView, subView) in
+        
+    }
     return animator
 }()
