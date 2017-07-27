@@ -58,8 +58,8 @@ public class BBAlertController: UIViewController {
         super.viewWillAppear(animated)
         makeBackground()
         makeContentContainer()
-        settings.animation.backgroundAppearenceAnimator.run()
-        settings.animation.alertAppearenceAnimator.run()
+        settings.animation.backgroundAppearenceAnimator.runAnimationFor(mainView: view, subView: containerView)
+        settings.animation.alertAppearenceAnimator.runAnimationFor(mainView: view, subView: containerView)
     }
     
     private func makeBackground() {
