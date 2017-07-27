@@ -52,6 +52,10 @@ public class BBAlertController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.clear
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(backgroundTap(_:)))
+        backgroundView.addGestureRecognizer(tap)
+        backgroundView.isUserInteractionEnabled = true
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -64,6 +68,13 @@ public class BBAlertController: UIViewController {
         settings.animation
             .alertAppearenceAnimator
             .runAnimationFor(mainView: view, subView: containerView)
+    }
+    
+    @objc
+    private func backgroundTap(_ sender: UITapGestureRecognizer) {
+        if settings.cancelable {
+            hide()
+        }
     }
 
     private func makeBackground() {

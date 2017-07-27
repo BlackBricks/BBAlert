@@ -14,6 +14,7 @@ public struct Settings {
     var background: BackgroundSettings = BackgroundSettings()
     var animation: Animation = Animation()
     var positioning: (ViewRelation) -> Void = defaultPositioning
+    var cancelable: Bool = true
 }
 
 public struct BackgroundSettings {
