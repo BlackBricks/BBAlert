@@ -10,6 +10,11 @@ import BBAlert
 import Reusable
 import UIKit
 
-public class AlertExample: UIViewController, StoryboardBased {
+public class AlertExample: UIViewController, StoryboardBased, AlertContainable {
     
+    public weak var alert: AlertHideable?
+    
+    @IBAction func close() {
+        alert?.hide()
+    }
 }

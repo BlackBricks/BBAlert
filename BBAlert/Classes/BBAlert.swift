@@ -10,7 +10,15 @@ import Foundation
 import UIImageEffects
 import UIKit
 
-open class BBAlert {
+public protocol AlertHideable: AnyObject {
+    func hide()
+}
+
+public protocol AlertContainable {
+    weak var alert: AlertHideable? { get set }
+}
+
+open class BBAlert: AlertHideable {
 
     public static let shared: BBAlert = BBAlert()
 
@@ -31,6 +39,11 @@ open class BBAlert {
         controller.settings = settings
         controller.contentController = contentController
         controller.modalPresentationStyle = .overCurrentContext
+        
+        if var contentController = contentController as? AlertContainable {
+            contentController.alert = self
+        }
+        
         mainController.present(controller, animated: false)
     }
 
