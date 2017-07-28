@@ -55,39 +55,28 @@ public struct Animator {
 }
 
 private let defaultAppearenceAnimator: Animator = {
-    var animator = Animator()
-    animator.duration = 0.4
-    animator.animationOptions = [.curveEaseInOut]
-    animator.preanimations = {
-        (mainView, subView) in
-        subView.alpha = 0.0
-    }
-    animator.animations = {
-        (mainView, subView) in
-        subView.alpha = 1.0
-    }
-    animator.completion = {
-        (mainView, subView) in
-        
-    }
-    return animator
+    return alphaAnimator(from: 0.0, to: 1.0, duration: 0.4)
 }()
 
 private let defaultDisappearenceAnimator: Animator = {
+    return alphaAnimator(from: 1.0, to: 0.0, duration: 0.4)
+}()
+
+private func alphaAnimator(from startAlpha: CGFloat, to endAlpha: CGFloat, duration: TimeInterval) -> Animator {
     var animator = Animator()
-    animator.duration = 0.4
+    animator.duration = duration
     animator.animationOptions = [.curveEaseInOut]
     animator.preanimations = {
         (mainView, subView) in
-        subView.alpha = 1.0
+        subView.alpha = startAlpha
     }
     animator.animations = {
         (mainView, subView) in
-        subView.alpha = 0.0
+        subView.alpha = endAlpha
     }
     animator.completion = {
         (mainView, subView) in
         
     }
     return animator
-}()
+}
