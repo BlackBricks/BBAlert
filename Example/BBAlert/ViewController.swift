@@ -18,7 +18,7 @@ public class ViewController: UIViewController, StoryboardBased {
     
     @IBAction func showAlert() {
         let vc = AlertExample.instantiate()
-        BBAlert.shared.show(controller: vc)
+        BBAlert.show(controller: vc, inController: self)
     }
 
     override public func didReceiveMemoryWarning() {

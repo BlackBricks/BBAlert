@@ -18,27 +18,26 @@ open class BBAlert {
 
     private var controller: BBAlertController = BBAlertController()
 
-    public func show(controller contentController: UIViewController) {
+    public init() {
+
+    }
+    
+    public static func show(controller contentController: UIViewController, inController mainController: UIViewController) {
+        shared.show(controller: contentController, inController: mainController)
+    }
+    
+    public func show(controller contentController: UIViewController, inController mainController: UIViewController) {
         controller = BBAlertController()
         controller.settings = settings
         controller.contentController = contentController
         controller.modalPresentationStyle = .overCurrentContext
-        topMostController()?.present(controller, animated: false)
+        mainController.present(controller, animated: false)
     }
 
     public func hide() {
         controller.hide()
     }
-
-    private func topMostController() -> UIViewController? {
-        var topController = UIApplication.shared.keyWindow?.rootViewController
-
-        while let presentedController = topController?.presentedViewController {
-            topController = presentedController
-        }
-
-        return topController
-    }
+    
 }
 
 public class BBAlertController: UIViewController {
