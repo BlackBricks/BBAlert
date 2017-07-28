@@ -6,19 +6,24 @@
 //  Copyright (c) 2017 kryndach. All rights reserved.
 //
 
+import BBAlert
+import Reusable
 import UIKit
 
-class ViewController: UIViewController {
+public class ViewController: UIViewController, StoryboardBased {
 
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    @IBAction func showAlert() {
+        let vc = AlertExample.instantiate()
+        BBAlert.show(controller: vc, inController: self)
     }
 
-    override func didReceiveMemoryWarning() {
+    override public func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
 }
-
