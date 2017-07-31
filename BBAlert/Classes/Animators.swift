@@ -55,11 +55,11 @@ public struct Animator {
 }
 
 private let defaultAppearenceAnimator: Animator = {
-    return alphaAnimator(from: 0.0, to: 1.0, duration: 0.4)
+    alphaAnimator(from: 0.0, to: 1.0, duration: 0.4)
 }()
 
 private let defaultDisappearenceAnimator: Animator = {
-    return alphaAnimator(from: 1.0, to: 0.0, duration: 0.4)
+    alphaAnimator(from: 1.0, to: 0.0, duration: 0.4)
 }()
 
 private func alphaAnimator(from startAlpha: CGFloat, to endAlpha: CGFloat, duration: TimeInterval) -> Animator {
