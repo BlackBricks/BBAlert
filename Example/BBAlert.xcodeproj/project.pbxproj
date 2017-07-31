@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1AEA7F781F25AD5A006ECB34 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 1AEA7F771F25AD5A006ECB34 /* .swiftlint.yml */; };
-		1AEA7F811F272D88006ECB34 /* AlertExample.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AEA7F801F272D88006ECB34 /* AlertExample.storyboard */; };
-		1AEA7F831F272D9B006ECB34 /* AlertExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEA7F821F272D9B006ECB34 /* AlertExample.swift */; };
 		578D79A4488982F91AE5C18A /* Pods_BBAlert_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEC90C7DB95320A009930D6E /* Pods_BBAlert_Tests.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
@@ -32,8 +30,6 @@
 
 /* Begin PBXFileReference section */
 		1AEA7F771F25AD5A006ECB34 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
-		1AEA7F801F272D88006ECB34 /* AlertExample.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AlertExample.storyboard; sourceTree = "<group>"; };
-		1AEA7F821F272D9B006ECB34 /* AlertExample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertExample.swift; sourceTree = "<group>"; };
 		3E6136AC1C3A3F13EDE7C34C /* Pods-BBAlert_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BBAlert_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BBAlert_Tests/Pods-BBAlert_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* BBAlert_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BBAlert_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -102,9 +98,7 @@
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
-				1AEA7F821F272D9B006ECB34 /* AlertExample.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
-				1AEA7F801F272D88006ECB34 /* AlertExample.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
@@ -260,7 +254,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1AEA7F811F272D88006ECB34 /* AlertExample.storyboard in Resources */,
 				1AEA7F781F25AD5A006ECB34 /* .swiftlint.yml in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
@@ -389,7 +382,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1AEA7F831F272D9B006ECB34 /* AlertExample.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
