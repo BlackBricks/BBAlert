@@ -146,6 +146,7 @@ public class BBAlertController: UIViewController {
     }
 
     private func makeContentContainer() {
+        // forcing contentController to load view hierarchy
         _ = contentController.view
         
         if var contentController = contentController as? AlertContainable {
