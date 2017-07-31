@@ -12,6 +12,12 @@ import UIKit
 
 public class AlertExample: UIViewController, StoryboardBased, AlertContainable {
     
+    public var content: UIView {
+        return contentView
+    }
+    
+    @IBOutlet private weak var contentView: UIView!
+    
     public weak var alert: AlertHideable?
     
     @IBAction func close() {

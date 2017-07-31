@@ -16,6 +16,7 @@ public protocol AlertHideable: AnyObject {
 
 public protocol AlertContainable {
     weak var alert: AlertHideable? { get set }
+    var content: UIView { get }
 }
 
 open class BBAlert: AlertHideable {
@@ -145,7 +146,11 @@ public class BBAlertController: UIViewController {
     }
 
     private func makeContentContainer() {
-        containerView = contentController.view
+        _ = contentController.view
+        
+        if var contentController = contentController as? AlertContainable {
+            containerView = contentController.content
+        }
 
         containerView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(containerView)
