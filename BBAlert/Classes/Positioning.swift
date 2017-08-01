@@ -27,9 +27,13 @@ private let defaultPositioning: ViewRelation = {
     let verticalConstraint = NSLayoutConstraint(item: subView, attribute: .centerY, relatedBy: .equal, toItem: mainView, attribute: .centerY, multiplier: 1, constant: 0)
     
     let topConstraint = NSLayoutConstraint(item: subView, attribute: .top, relatedBy: .greaterThanOrEqual, toItem: mainView, attribute: .top, multiplier: 1, constant: padding.top)
+    topConstraint.priority = 100
     let leftConstraint = NSLayoutConstraint(item: subView, attribute: .left, relatedBy: .greaterThanOrEqual, toItem: mainView, attribute: .left, multiplier: 1, constant: padding.left)
+    leftConstraint.priority = 100
     let bottomConstraint = NSLayoutConstraint(item: subView, attribute: .bottom, relatedBy: .greaterThanOrEqual, toItem: mainView, attribute: .bottom, multiplier: 1, constant: padding.bottom)
+    bottomConstraint.priority = 100
     let rightConstraint = NSLayoutConstraint(item: subView, attribute: .right, relatedBy: .greaterThanOrEqual, toItem: mainView, attribute: .right, multiplier: 1, constant: padding.right)
+    rightConstraint.priority = 100
     
     NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint, topConstraint, leftConstraint, bottomConstraint, rightConstraint])
 }
