@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kJ7-17-J4j">
-                                <rect key="frame" x="62.5" y="287" width="250" height="93"/>
+                                <rect key="frame" x="62.5" y="292" width="250" height="83"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c3a-av-jRf">
                                         <rect key="frame" x="106" y="15" width="39" height="19"/>
@@ -34,7 +34,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hbD-Cy-8eD">
-                                        <rect key="frame" x="10" y="54" width="230" height="19"/>
+                                        <rect key="frame" x="10" y="49" width="230" height="19"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -42,10 +42,10 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="hbD-Cy-8eD" secondAttribute="bottom" constant="20" id="2Ta-0m-1HF"/>
+                                    <constraint firstAttribute="bottom" secondItem="hbD-Cy-8eD" secondAttribute="bottom" constant="15" id="2Ta-0m-1HF"/>
                                     <constraint firstItem="c3a-av-jRf" firstAttribute="top" secondItem="kJ7-17-J4j" secondAttribute="top" constant="15" id="XLm-ci-9Gk"/>
                                     <constraint firstAttribute="width" constant="250" id="XgI-9o-Uf2"/>
-                                    <constraint firstItem="hbD-Cy-8eD" firstAttribute="top" secondItem="c3a-av-jRf" secondAttribute="bottom" constant="20" id="dk3-BI-Lp6"/>
+                                    <constraint firstItem="hbD-Cy-8eD" firstAttribute="top" secondItem="c3a-av-jRf" secondAttribute="bottom" constant="15" id="dk3-BI-Lp6"/>
                                     <constraint firstItem="c3a-av-jRf" firstAttribute="centerX" secondItem="kJ7-17-J4j" secondAttribute="centerX" id="drc-dh-SXU"/>
                                     <constraint firstAttribute="trailing" secondItem="hbD-Cy-8eD" secondAttribute="trailing" constant="10" id="ng6-Ju-8k1"/>
                                     <constraint firstItem="hbD-Cy-8eD" firstAttribute="leading" secondItem="kJ7-17-J4j" secondAttribute="leading" constant="10" id="psr-DM-Ght"/>
