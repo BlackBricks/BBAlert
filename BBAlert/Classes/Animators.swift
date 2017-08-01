@@ -12,7 +12,7 @@ public enum Animators {
     case defaultAppearence
     case defaultDisappearence
     
-    func get() -> Animator {
+    public func get() -> Animator {
         switch self {
         case .defaultAppearence:
             return defaultAppearenceAnimator
@@ -23,18 +23,18 @@ public enum Animators {
 }
 
 public struct Animator {
-    var preanimations: ViewRelation = {
+    public var preanimations: ViewRelation = {
         _, _ in
     }
-    var animations: ViewRelation = {
+    public var animations: ViewRelation = {
         _, _ in
     }
-    var completion: ViewRelation = {
+    public var completion: ViewRelation = {
         _, _ in
     }
-    var duration: TimeInterval = 0.0
-    var animationOptions: UIViewAnimationOptions = []
-    var delay: TimeInterval = 0.0
+    public var duration: TimeInterval = 0.0
+    public var animationOptions: UIViewAnimationOptions = []
+    public var delay: TimeInterval = 0.0
     
     public func runAnimationFor(mainView: UIView, subView: UIView, completion: @escaping () -> Void = {
         }) {
