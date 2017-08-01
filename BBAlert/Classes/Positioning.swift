@@ -11,7 +11,7 @@ import Foundation
 public enum Positioning {
     case `default`
     
-    func get() -> ViewRelation {
+    public func get() -> ViewRelation {
         switch self {
         case .default:
             return defaultPositioning
