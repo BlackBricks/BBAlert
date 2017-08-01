@@ -1,5 +1,6 @@
 PODS:
   - BBAlert (0.1.0):
+    - Reusable
     - UIImageEffects
   - FBSnapshotTestCase (2.1.4):
     - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
@@ -36,7 +37,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  BBAlert: 0662405a6632b19aabb0d3738a075b9a23e5b220
+  BBAlert: ccb10848926258817327e8996500ba27b5329cca
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
   Nimble: 415e3aa3267e7bc2c96b05fa814ddea7bb686a29
   Nimble-Snapshots: e743439f26c2fa99d8f7e0d7c01c99bcb40aa6f2

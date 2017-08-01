@@ -17,7 +17,7 @@ public class ViewController: UIViewController, StoryboardBased {
     }
     
     @IBAction func showAlert() {
-        let vc = AlertExample.instantiate()
+        let vc = MessageAlert.instantiate()
         BBAlert.show(controller: vc, inController: self)
     }
 
