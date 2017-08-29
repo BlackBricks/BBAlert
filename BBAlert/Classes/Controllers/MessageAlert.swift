@@ -8,6 +8,7 @@
 
 import Foundation
 import Reusable
+import SnapKit
 
 public class MessageAlert: UIViewController, StoryboardBased, AlertContainable {
     
@@ -15,6 +16,7 @@ public class MessageAlert: UIViewController, StoryboardBased, AlertContainable {
     public var content: UIView {
         return contentView
     }
+    public var layout: ActionsLayout?
 
     public var titleText: String = "Title"
     public var messageText: String = "Message"
@@ -22,6 +24,7 @@ public class MessageAlert: UIViewController, StoryboardBased, AlertContainable {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var messageLabel: UILabel!
     @IBOutlet private weak var contentView: UIView!
+    @IBOutlet private weak var buttonsContainer: UIView!
     
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -29,11 +32,34 @@ public class MessageAlert: UIViewController, StoryboardBased, AlertContainable {
         messageLabel.text = messageText
         
         contentView.layer.cornerRadius = 5.0
-        contentView.layer.masksToBounds = false
+        contentView.layer.masksToBounds = true
+        
+        setupLayout()
+    }
+    
+    private func setupLayout() {
+        guard let layout = layout, let actionsView = layout.configureView(inContainer: buttonsContainer) else {
+            return
+        }
+        buttonsContainer.addSubview(actionsView)
+        
+        actionsView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
+        buttonsContainer.snp.remakeConstraints { (remake) in
+            remake.height.equalTo(actionsView.frame.height)
+        }
+        
+    }
+    
+    public static func instantiate(withButtons buttons: [AlertPressable]?) -> MessageAlert {
+        let alert = instantiate()
+        let layout = VerticalActionsLayout(withButtons: buttons)
+        alert.layout = layout
+        return alert
     }
     
     @IBAction func close() {
         alert?.hide()
     }
-    
 }
