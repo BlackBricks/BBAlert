@@ -40,7 +40,7 @@ public class AlertButton: UIView, NibLoadable, AlertPressable {
         pressBlock()
     }
     
-    public class func createButton(withTitle title: String, completion: (() -> Void)?) -> AlertButton {
+    public class func create(withTitle title: String, completion: (() -> Void)?) -> AlertButton {
         let alertButton = AlertButton.loadFromNib()
         alertButton.buttonTitle.text = title
         alertButton.pressBlock = completion

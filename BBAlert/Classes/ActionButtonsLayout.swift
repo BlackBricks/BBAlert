@@ -9,20 +9,26 @@
 import Foundation
 import SnapKit
 
+// Protocol for any button in alerts
+public protocol AlertPressable {
+    var pressBlock: (() -> Void)? { get set }
+}
+
+// Protocol for any buttons layout
 public protocol ActionsLayout {
-    var actions: [AlertPressable]? { get set }
+    var alertButtons: [AlertPressable]? { get set }
     func configureView(inContainer container: UIView) -> UIView?
 }
 
-open class DefaultActionsLayout: ActionsLayout {
-    public var actions: [AlertPressable]?
+open class VerticalActionsLayout: ActionsLayout {
+    public var alertButtons: [AlertPressable]?
     
-    public init(withActions actions: [AlertPressable]?) {
-        self.actions = actions
+    public init(withButtons buttons: [AlertPressable]?) {
+        self.alertButtons = buttons
     }
     
     public func configureView(inContainer container: UIView) -> UIView? {
-        guard let actions = actions else {
+        guard let buttons = alertButtons else {
             return nil
         }
         
@@ -31,7 +37,7 @@ open class DefaultActionsLayout: ActionsLayout {
         
         var i = 0
         var resultHeight: CGFloat = 0
-        for actionButton in actions {
+        for actionButton in buttons {
             guard let actionButton = actionButton as? UIView else {
                 continue
             }
