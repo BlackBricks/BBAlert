@@ -19,6 +19,11 @@ public protocol AlertContainable {
     var content: UIView { get }
 }
 
+// Protocol for any button in alerts
+public protocol AlertPressable {
+    var pressBlock: (() -> Void)? { get set }
+}
+
 open class BBAlert: AlertHideable {
 
     public static let shared: BBAlert = BBAlert()

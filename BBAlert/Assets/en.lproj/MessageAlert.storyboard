@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="iWI-nM-oZT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="iWI-nM-oZT">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kJ7-17-J4j">
-                                <rect key="frame" x="62.5" y="292" width="250" height="83"/>
+                                <rect key="frame" x="63" y="295.5" width="250" height="76"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c3a-av-jRf">
                                         <rect key="frame" x="106" y="15" width="39" height="19"/>
@@ -39,16 +39,26 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lce-QK-M0L">
+                                        <rect key="frame" x="0.0" y="76" width="250" height="0.0"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" priority="750" id="7aF-fr-44Q"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="hbD-Cy-8eD" secondAttribute="bottom" constant="15" id="2Ta-0m-1HF"/>
+                                    <constraint firstItem="Lce-QK-M0L" firstAttribute="leading" secondItem="kJ7-17-J4j" secondAttribute="leading" id="1ch-3T-yfw"/>
+                                    <constraint firstAttribute="bottom" secondItem="Lce-QK-M0L" secondAttribute="bottom" id="JbX-9S-ERt"/>
                                     <constraint firstItem="c3a-av-jRf" firstAttribute="top" secondItem="kJ7-17-J4j" secondAttribute="top" constant="15" id="XLm-ci-9Gk"/>
                                     <constraint firstAttribute="width" constant="250" id="XgI-9o-Uf2"/>
                                     <constraint firstItem="hbD-Cy-8eD" firstAttribute="top" secondItem="c3a-av-jRf" secondAttribute="bottom" constant="15" id="dk3-BI-Lp6"/>
                                     <constraint firstItem="c3a-av-jRf" firstAttribute="centerX" secondItem="kJ7-17-J4j" secondAttribute="centerX" id="drc-dh-SXU"/>
                                     <constraint firstAttribute="trailing" secondItem="hbD-Cy-8eD" secondAttribute="trailing" constant="10" id="ng6-Ju-8k1"/>
                                     <constraint firstItem="hbD-Cy-8eD" firstAttribute="leading" secondItem="kJ7-17-J4j" secondAttribute="leading" constant="10" id="psr-DM-Ght"/>
+                                    <constraint firstAttribute="trailing" secondItem="Lce-QK-M0L" secondAttribute="trailing" id="slk-c4-vjb"/>
+                                    <constraint firstItem="Lce-QK-M0L" firstAttribute="top" secondItem="hbD-Cy-8eD" secondAttribute="bottom" constant="8" id="wm5-TM-Okc"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -60,6 +70,7 @@
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
+                        <outlet property="buttonsContainer" destination="Lce-QK-M0L" id="BUf-6p-Zix"/>
                         <outlet property="contentView" destination="kJ7-17-J4j" id="YB0-dd-ce1"/>
                         <outlet property="messageLabel" destination="hbD-Cy-8eD" id="mUU-7F-FBG"/>
                         <outlet property="titleLabel" destination="c3a-av-jRf" id="I0b-bt-ZTf"/>
@@ -67,7 +78,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3mq-Zy-dHK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-180.80000000000001" y="213.19340329835083"/>
+            <point key="canvasLocation" x="-181.59999999999999" y="212.74362818590706"/>
         </scene>
     </scenes>
 </document>

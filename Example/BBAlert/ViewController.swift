@@ -18,6 +18,20 @@ public class ViewController: UIViewController, StoryboardBased {
     
     @IBAction func showAlert() {
         let vc = MessageAlert.instantiate()
+        
+        let button = AlertButton.createButton(withTitle: "Ok") {
+            NSLog("Ok button pressed")
+            vc.alert?.hide()
+        }
+        
+        let button2 = AlertButton.createButton(withTitle: "Another Red Button") {
+            vc.alert?.hide()
+        }
+        
+        // Create Layout
+        let layout = DefaultActionsLayout(withActions: [button, button2])
+        vc.layout = layout
+        
         BBAlert.show(controller: vc, inController: self)
     }
 

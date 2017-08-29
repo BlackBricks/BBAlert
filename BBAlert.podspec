@@ -28,7 +28,7 @@ TODO: Add long description of the pod here.
   s.source           = { :git => 'https://github.com/kryndach/BBAlert.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
 
   s.source_files = 'BBAlert/Classes/**/*'
   
@@ -42,5 +42,6 @@ TODO: Add long description of the pod here.
   s.frameworks = 'UIKit'
   s.dependency 'UIImageEffects'
   s.dependency 'Reusable'
+  s.dependency 'SnapKit'
 
 end
