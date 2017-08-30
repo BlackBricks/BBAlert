@@ -10,31 +10,33 @@ import Foundation
 import SnapKit
 
 // Protocol for any button in alerts
-public protocol AlertPressable: AnyObject {
-    var pressBlock: (() -> Void)? { get set }
+public protocol Actionable: AnyObject {
+    var actionBlock: (() -> Void)? { get set }
 }
 
 // Protocol for any buttons layout
 public protocol ActionsLayout {
-    var alertButtons: [AlertPressable]? { get set }
+    var actionViews: [Actionable]? { get set }
     func configureView(inContainer container: UIView) -> UIView?
 }
 
+private let defaultSpacing: CGFloat = 0.5
+
 open class VerticalActionsLayout: ActionsLayout {
-    public var alertButtons: [AlertPressable]?
+    public var actionViews: [Actionable]?
     
-    public init(withButtons buttons: [AlertPressable]?) {
-        self.alertButtons = buttons
+    public init(withActionViews views: [Actionable]?) {
+        self.actionViews = views
     }
     
     public func configureView(inContainer container: UIView) -> UIView? {
-        guard let buttons = alertButtons as? [UIView] else {
+        guard let views = actionViews as? [UIView] else {
             return nil
         }
         
         var frame = CGRect(origin: .zero, size: container.frame.size)
-        let wrapperView = UIStackView(arrangedSubviews: buttons)
-        wrapperView.spacing = 0.5
+        let wrapperView = UIStackView(arrangedSubviews: views)
+        wrapperView.spacing = defaultSpacing
         wrapperView.axis = .vertical
 
         wrapperView.snp.makeConstraints { (make) in
@@ -48,33 +50,35 @@ open class VerticalActionsLayout: ActionsLayout {
 }
 
 open class HorizontalActionsLayout: ActionsLayout {
-    public var alertButtons: [AlertPressable]?
+    public var actionViews: [Actionable]?
     
-    public init(withButtons buttons: [AlertPressable]?) {
-        self.alertButtons = buttons
+    let columnsCount: Int = 2
+    
+    public init(withActionViews views: [Actionable]?) {
+        self.actionViews = views
     }
     
     public func configureView(inContainer container: UIView) -> UIView? {
-        guard let buttons = alertButtons as? [UIView] else {
+        guard let views = actionViews as? [UIView] else {
             return nil
         }
         
         var arrangedViews = [UIView]()
         
-        for chunk in buttons.chunks(2) {
+        for chunk in views.chunks(columnsCount) {
             var horizontalStack = UIStackView()
             horizontalStack.layoutIfNeeded()
-            horizontalStack.spacing = 0.5
+            horizontalStack.spacing = defaultSpacing
             horizontalStack.distribution = .fillEqually
             horizontalStack.axis = .horizontal
-            for button in chunk {
-                horizontalStack.addArrangedSubview(button)
+            for actionView in chunk {
+                horizontalStack.addArrangedSubview(actionView)
             }
             arrangedViews.append(horizontalStack)
         }
 
         let wrapperView = UIStackView(arrangedSubviews: arrangedViews)
-        wrapperView.spacing = 0.5
+        wrapperView.spacing = defaultSpacing
         wrapperView.axis = .vertical
         
         wrapperView.snp.makeConstraints { (make) in

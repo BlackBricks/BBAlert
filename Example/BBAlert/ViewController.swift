@@ -19,21 +19,21 @@ public class ViewController: UIViewController, StoryboardBased {
     @IBAction func showAlert() {
         let vc = MessageAlert.instantiate()
         
-        let button = AlertButton.create(withTitle: "Ok") {
+        let actionView = AlertButton.create(withTitle: "Ok") {
             NSLog("Ok button pressed")
             vc.alert?.hide()
         }
         
-        let button2 = AlertButton.create(withTitle: "Another Red Button") {
+        let actionView2 = AlertButton.create(withTitle: "Another Red Button") {
             vc.alert?.hide()
         }
         
-        let button3 = AlertButton.create(withTitle: "3") {
+        let actionView3 = AlertButton.create(withTitle: "3") {
             vc.alert?.hide()
         }
         
         // Create Layout
-        let layout = HorizontalActionsLayout(withButtons: [button, button2, button3])
+        let layout = HorizontalActionsLayout(withActionViews: [actionView, actionView2, actionView3])
         vc.layout = layout
         
         BBAlert.show(controller: vc, inController: self)
