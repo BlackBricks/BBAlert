@@ -10,60 +10,91 @@ import Foundation
 import SnapKit
 
 // Protocol for any button in alerts
-public protocol AlertPressable {
-    var pressBlock: (() -> Void)? { get set }
+public protocol Actionable: AnyObject {
+    var actionBlock: (() -> Void)? { get set }
 }
 
 // Protocol for any buttons layout
 public protocol ActionsLayout {
-    var alertButtons: [AlertPressable]? { get set }
+    var actionViews: [Actionable]? { get set }
     func configureView(inContainer container: UIView) -> UIView?
 }
 
+private let defaultSpacing: CGFloat = 0.5
+
 open class VerticalActionsLayout: ActionsLayout {
-    public var alertButtons: [AlertPressable]?
+    public var actionViews: [Actionable]?
     
-    public init(withButtons buttons: [AlertPressable]?) {
-        self.alertButtons = buttons
+    public init(withActionViews views: [Actionable]?) {
+        self.actionViews = views
     }
     
     public func configureView(inContainer container: UIView) -> UIView? {
-        guard let buttons = alertButtons else {
+        guard let views = actionViews as? [UIView] else {
             return nil
         }
         
         var frame = CGRect(origin: .zero, size: container.frame.size)
-        let wrapperView = UIView(frame: frame)
-        
-        var i = 0
-        var resultHeight: CGFloat = 0
-        for actionButton in buttons {
-            guard let actionButton = actionButton as? UIView else {
-                continue
-            }
-            
-            let buttonFrame = CGRect(x: 0, y: CGFloat(i) * actionButton.frame.height, width: frame.width, height: actionButton.frame.height)
-            actionButton.frame = buttonFrame
-            wrapperView.addSubview(actionButton)
-            
-            actionButton.snp.makeConstraints { (make) in
-                make.top.equalTo(CGFloat(i) * actionButton.frame.height)
-                make.left.equalTo(0)
-                make.right.equalTo(0)
-                make.height.equalTo(actionButton.frame.height)
-            }
-            
-            resultHeight += buttonFrame.height
-            i += 1
-        }
-        
+        let wrapperView = UIStackView(arrangedSubviews: views)
+        wrapperView.spacing = defaultSpacing
+        wrapperView.axis = .vertical
+
         wrapperView.snp.makeConstraints { (make) in
             make.width.equalTo(container.frame.width)
-            make.height.equalTo(resultHeight)
         }
         
         wrapperView.layoutIfNeeded()
         
         return wrapperView
+    }
+}
+
+open class GridActionsLayout: ActionsLayout {
+    public var actionViews: [Actionable]?
+    
+    let columnsCount: Int = 2
+    
+    public init(withActionViews views: [Actionable]?) {
+        self.actionViews = views
+    }
+    
+    public func configureView(inContainer container: UIView) -> UIView? {
+        guard let views = actionViews as? [UIView] else {
+            return nil
+        }
+        
+        var arrangedViews = [UIView]()
+        
+        for chunk in views.chunks(columnsCount) {
+            var horizontalStack = UIStackView()
+            horizontalStack.layoutIfNeeded()
+            horizontalStack.spacing = defaultSpacing
+            horizontalStack.distribution = .fillEqually
+            horizontalStack.axis = .horizontal
+            for actionView in chunk {
+                horizontalStack.addArrangedSubview(actionView)
+            }
+            arrangedViews.append(horizontalStack)
+        }
+
+        let wrapperView = UIStackView(arrangedSubviews: arrangedViews)
+        wrapperView.spacing = defaultSpacing
+        wrapperView.axis = .vertical
+        
+        wrapperView.snp.makeConstraints { (make) in
+            make.width.equalTo(container.frame.width)
+        }
+        
+        wrapperView.layoutIfNeeded()
+        
+        return wrapperView
+    }
+}
+
+extension Array {
+    func chunks(_ chunkSize: Int) -> [[Element]] {
+        return stride(from: 0, to: self.count, by: chunkSize).map {
+            Array(self[$0..<Swift.min($0 + chunkSize, self.count)])
+        }
     }
 }

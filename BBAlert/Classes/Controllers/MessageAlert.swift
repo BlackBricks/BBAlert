@@ -52,9 +52,9 @@ public class MessageAlert: UIViewController, StoryboardBased, AlertContainable {
         
     }
     
-    public static func instantiate(withButtons buttons: [AlertPressable]?) -> MessageAlert {
+    public static func instantiate(withActionViews views: [Actionable]?) -> MessageAlert {
         let alert = instantiate()
-        let layout = VerticalActionsLayout(withButtons: buttons)
+        let layout = VerticalActionsLayout(withActionViews: views)
         alert.layout = layout
         return alert
     }

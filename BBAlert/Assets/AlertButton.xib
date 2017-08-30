@@ -15,8 +15,11 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Wx-Hn-eHc">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Wx-Hn-eHc">
+                    <rect key="frame" x="10" y="5" width="355" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="BqV-cM-sA4"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -24,10 +27,10 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="6Wx-Hn-eHc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="03J-KB-kE6"/>
-                <constraint firstAttribute="trailing" secondItem="6Wx-Hn-eHc" secondAttribute="trailing" id="AUm-mt-2py"/>
-                <constraint firstAttribute="bottom" secondItem="6Wx-Hn-eHc" secondAttribute="bottom" id="HOp-Mm-asO"/>
-                <constraint firstItem="6Wx-Hn-eHc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="YNL-1K-PNt"/>
+                <constraint firstItem="6Wx-Hn-eHc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="03J-KB-kE6"/>
+                <constraint firstAttribute="trailing" secondItem="6Wx-Hn-eHc" secondAttribute="trailing" constant="10" id="AUm-mt-2py"/>
+                <constraint firstAttribute="bottom" secondItem="6Wx-Hn-eHc" secondAttribute="bottom" constant="5" id="HOp-Mm-asO"/>
+                <constraint firstItem="6Wx-Hn-eHc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="YNL-1K-PNt"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>

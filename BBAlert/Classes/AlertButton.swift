@@ -10,10 +10,10 @@ import Foundation
 import Reusable
 import UIKit
 
-public class AlertButton: UIView, NibLoadable, AlertPressable {
+public class AlertButton: UIView, NibLoadable, Actionable {
     
     @IBOutlet private weak var buttonTitle: UILabel!
-    public var pressBlock: (() -> Void)?
+    public var actionBlock: (() -> Void)?
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -33,7 +33,7 @@ public class AlertButton: UIView, NibLoadable, AlertPressable {
     
     @objc
     private func buttonAction() {
-        guard let pressBlock = pressBlock else {
+        guard let pressBlock = actionBlock else {
             return
         }
         
@@ -43,7 +43,7 @@ public class AlertButton: UIView, NibLoadable, AlertPressable {
     public class func create(withTitle title: String, completion: (() -> Void)?) -> AlertButton {
         let alertButton = AlertButton.loadFromNib()
         alertButton.buttonTitle.text = title
-        alertButton.pressBlock = completion
+        alertButton.actionBlock = completion
         return alertButton
     }
 }
