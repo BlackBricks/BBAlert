@@ -33,7 +33,7 @@ public class ViewController: UIViewController, StoryboardBased {
         }
         
         // Create Layout
-        let layout = HorizontalActionsLayout(withActionViews: [actionView, actionView2, actionView3])
+        let layout = GridActionsLayout(withActionViews: [actionView, actionView2, actionView3])
         vc.layout = layout
         
         BBAlert.show(controller: vc, inController: self)

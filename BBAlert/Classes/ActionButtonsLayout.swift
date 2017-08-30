@@ -49,7 +49,7 @@ open class VerticalActionsLayout: ActionsLayout {
     }
 }
 
-open class HorizontalActionsLayout: ActionsLayout {
+open class GridActionsLayout: ActionsLayout {
     public var actionViews: [Actionable]?
     
     let columnsCount: Int = 2
