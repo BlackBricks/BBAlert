@@ -28,8 +28,12 @@ public class ViewController: UIViewController, StoryboardBased {
             vc.alert?.hide()
         }
         
+        let button3 = AlertButton.create(withTitle: "3") {
+            vc.alert?.hide()
+        }
+        
         // Create Layout
-        let layout = VerticalActionsLayout(withButtons: [button, button2])
+        let layout = HorizontalActionsLayout(withButtons: [button, button2, button3])
         vc.layout = layout
         
         BBAlert.show(controller: vc, inController: self)
