@@ -60,6 +60,6 @@ public class MessageAlert: UIViewController, StoryboardBased, AlertContainable {
     }
     
     @IBAction func close() {
-        alert?.hide()
+        alert?.hide() {}
     }
 }
