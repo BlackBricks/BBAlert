@@ -11,7 +11,7 @@ import UIImageEffects
 import UIKit
 
 public protocol AlertHideable: AnyObject {
-    func hide()
+    func hide(completion: @escaping () -> Void)
 }
 
 public protocol AlertContainable {
@@ -48,8 +48,8 @@ open class BBAlert: AlertHideable {
         mainController.present(controller, animated: false)
     }
 
-    public func hide() {
-        controller.hide()
+    public func hide(completion: @escaping () -> Void = {}) {
+        controller.hide(completion: completion)
     }
     
 }
@@ -159,7 +159,7 @@ public class BBAlertController: UIViewController {
         settings.positioning((mainView: view, subView: containerView))
     }
 
-    fileprivate func hide() {
+    fileprivate func hide(completion: @escaping () -> Void = {}) {
         settings.animation
             .backgroundDisappearenceAnimator
             .runAnimationFor(mainView: view, subView: backgroundView)
@@ -167,6 +167,7 @@ public class BBAlertController: UIViewController {
             .alertDisappearenceAnimator
             .runAnimationFor(mainView: view, subView: containerView) { [weak self] in
                 self?.dismiss(animated: false)
+                completion()
             }
     }
 
