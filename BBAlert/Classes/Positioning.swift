@@ -22,9 +22,9 @@ public enum Positioning {
 
 private let padding: UIEdgeInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
 
-private let defaultPositioning: ViewRelation = { (mainView, subView) in
+private let defaultPositioning: ViewRelation = { (viewPair) in
     
-    subView.snp.makeConstraints { (make) in
+    viewPair.subView.snp.makeConstraints { (make) in
         make.center.equalToSuperview()
     }
 }

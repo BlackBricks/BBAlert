@@ -20,16 +20,17 @@ public struct Settings {
 }
 
 public struct BackgroundSettings {
-    public var color: UIColor = UIColor(colorLiteralRed: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
+    public var color: UIColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
+    
     public var blur: BlurSettings = BlurSettings()
 }
 
 public struct BlurSettings {
-    public var blurEffectStyle: UIBlurEffectStyle = .dark
+    public var blurEffectStyle: UIBlurEffect.Style = .dark
     public var isCustomBlur: Bool = false
     public var enabled: Bool = true
     public var radius: CGFloat = 10.0
-    public var tintColor: UIColor = UIColor(colorLiteralRed: 0.0, green: 0.0, blue: 0.0, alpha: 0.7)
+    public var tintColor: UIColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.7)
     public var saturationDeltaFactor: CGFloat = 1.0
 }
 

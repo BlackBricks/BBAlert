@@ -24,16 +24,16 @@ public enum Animators {
 
 public struct Animator {
     public var preanimations: ViewRelation = {
-        _, _ in
+        _ in
     }
     public var animations: ViewRelation = {
-        _, _ in
+        _ in
     }
     public var completion: ViewRelation = {
-        _, _ in
+        _ in
     }
     public var duration: TimeInterval = 0.0
-    public var animationOptions: UIViewAnimationOptions = []
+    public var animationOptions: UIView.AnimationOptions = []
     public var delay: TimeInterval = 0.0
     
     public func runAnimationFor(mainView: UIView, subView: UIView, completion: @escaping () -> Void = {
@@ -67,15 +67,15 @@ private func alphaAnimator(from startAlpha: CGFloat, to endAlpha: CGFloat, durat
     animator.duration = duration
     animator.animationOptions = [.curveEaseInOut]
     animator.preanimations = {
-        (mainView, subView) in
-        subView.alpha = startAlpha
+        (viewPair) in
+        viewPair.subView.alpha = startAlpha
     }
     animator.animations = {
-        (mainView, subView) in
-        subView.alpha = endAlpha
+        (viewPair) in
+        viewPair.subView.alpha = endAlpha
     }
     animator.completion = {
-        (mainView, subView) in
+        (viewPair) in
         
     }
     return animator
