@@ -1,5 +1,5 @@
 PODS:
-  - BBAlert (0.1.0):
+  - BBAlert (0.1.1):
     - Reusable
     - SnapKit
     - UIImageEffects
@@ -34,12 +34,23 @@ DEPENDENCIES:
   - Reusable
   - SwiftLint
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - FBSnapshotTestCase
+    - Nimble
+    - Nimble-Snapshots
+    - Quick
+    - Reusable
+    - SnapKit
+    - SwiftLint
+    - UIImageEffects
+
 EXTERNAL SOURCES:
   BBAlert:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
-  BBAlert: f9588b66be8e3eef1b7c621c45089db7c2218911
+  BBAlert: e78c290804e901618a2be046e255c9754b95c617
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
   Nimble: 415e3aa3267e7bc2c96b05fa814ddea7bb686a29
   Nimble-Snapshots: e743439f26c2fa99d8f7e0d7c01c99bcb40aa6f2
@@ -51,4 +62,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 96b0bc077b9ed6dbe8d9bb522091f21ff172ffb3
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.5.3
